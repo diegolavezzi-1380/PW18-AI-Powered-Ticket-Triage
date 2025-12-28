@@ -1,0 +1,497 @@
+amministrazione:
+  titles:
+      - "URGENTE: Account bloccato {nome_utente} - errore {codice_errore} su sistema {modulo}"
+      - "Blocco sistema durante elaborazione fattura {numero_fattura} per {cliente}"
+      - "Errore critico: impossibile completare pagamento ordine {numero_ordine}"
+      - "Sistema fermo {modulo} non risponde - utenti bloccati su gestione anagrafiche"
+      - "Rallentamento fatturazione: salvataggio impiega 40 secondi (troppo)"
+      - "Errore stampa: impossibile stampare fattura {numero_fattura} (cliente aspetta)"
+      - "Discrepanza contabile: bonifico {importo} non visibile (chiusura bloccata)"
+      - "Account bloccato: utente {nome_utente} fermo (troppi tentativi)"
+      - "Errore calcolo IVA: importo errato su fattura estera (non validabile)"
+      - "Export fallito: report mensile si blocca a metà (serve urgente)"
+      - "Bug interfaccia: anagrafica {cliente} illeggibile (campi vuoti)"
+      - "Timeout ricerca: impossibile filtrare fatture > 30 giorni"
+      - "Mancata notifica: email approvazione persa (processo fermo)"
+      - "Errore validazione: codice fiscale corretto rifiutato dal sistema"
+      - "Anomalia visiva: duplicazione righe estratto conto (confusione)"
+      - "Funzione rotta: tasto upload PDF non cliccabile"
+      - "Archivio: documentazione storica {anno_fiscale}"
+      - "Log: inserimento anagrafica {cliente}"
+      - "Backup: storico fatture {anno_fiscale}"
+      - "Info: statistiche licenze {linea_prodotto}"
+      - "Manutenzione: pulizia account inattivi"
+      - "Monitoraggio: log modulo utenti (nessun errore)"
+      - "Batch: consolidamento dati contabili"
+      - "Task: aggiornamento anagrafica pianificato"
+
+  bodies:
+      - |
+        L'account utente {nome_utente} risulta bloccato dal sistema {modulo} con errore "{codice_errore}".
+        L'utente deve urgentemente accedere per completare l'elaborazione delle fatture per il cliente {cliente}.
+        Il blocco sta impattando le operazioni di chiusura ordini e l'invio documenti contabili.
+        Si richiede intervento tecnico immediato per ripristino accesso entro {tempo_massimo}.
+      - |
+        Durante l'elaborazione della fattura {numero_fattura} per il cliente {cliente}, il sistema {modulo}
+        si è bloccato generando errore {codice_errore}. L'operazione di registrazione pagamento di {importo}
+        non può essere completata. Il cliente attende conferma per procedere con l'ordine {numero_ordine}.
+        Necessario intervento urgente per sbloccare il processo di fatturazione.
+      - |
+        URgente completare la registrazione del pagamento per l'ordine {numero_ordine} del cliente {cliente}.
+        Il sistema mostra errore {codice_errore} durante l'inserimento dell'importo {importo} in {modulo}.
+        Il bonifico risulta effettuato ma il gestionale non salva i dati. Blocco critico che impedisce
+        conferma ordine e spedizione merce. Richiesto supporto tecnico immediato.
+      - |
+        Il sistema {modulo} non risponde alle richieste di accesso da parte degli utenti amministrativi.
+        Abbiamo la produzione ferma: impossibile gestire le anagrafiche clienti e fornitori.
+        Circa {quantita} utenti bloccati, nessuno riesce ad accedere alle funzionalità di gestione documenti.
+        Il problema si manifesta in ambiente {ambiente} con timeout continui.
+      - |
+        L'utente {nome_utente} segnala lentezza esasperante nel modulo fatturazione.
+        Il salvataggio di ogni fattura impiega 30-40 secondi.
+        Non è un blocco totale, ma dimezza la produttività dell'ufficio.
+        Necessaria verifica performance database o rete su ambiente {ambiente}.
+      - |
+        Errore di stampa isolato: impossibile stampare la fattura {numero_fattura}.
+        Il sistema genera il PDF correttamente a video, ma l'invio alla stampante fallisce.
+        Altre fatture vengono stampate regolarmente.
+        Il cliente {cliente} è in attesa del cartaceo per il ritiro merce.
+      - |
+        Mancato allineamento incassi: il bonifico di {importo} non risulta in contabilità.
+        In banca è presente, ma il modulo {modulo} non lo ha importato automaticamente.
+        Necessario inserimento manuale o forzatura sync per chiudere la posizione del cliente {cliente}.
+        Il problema riguarda solo i bonifici di ieri.
+      - |
+        L'account {nome_utente} risulta bloccato per troppi tentativi di accesso errati.
+        Serve sblocco manuale da parte dell'amministratore.
+        L'utente deve completare l'inserimento ordini entro sera.
+        Non è un problema di sistema generalizzato, solo utenza singola.
+      - |
+        Discrepanza IVA su fattura estera {numero_fattura}.
+        Il sistema calcola un importo diverso da quello atteso per il cliente {cliente}.
+        Differenza di pochi euro, ma impedisce la validazione contabile.
+        Richiesta verifica configurazione aliquote nel modulo {modulo}.
+      - |
+        Malfunzionamento export Excel per report mensile.
+        La generazione del file si interrompe a metà con errore generico.
+        I dati a video sono corretti.
+        Serve il file esportato per riunione di domani mattina. Workaround richiesto.
+      - |
+        Problema di visualizzazione anagrafica cliente {cliente}.
+        Alcuni campi (telefono, indirizzo) appaiono vuoti anche se popolati nel DB.
+        Rende difficile contattare il cliente per sollecito pagamenti.
+        Bug dell'interfaccia {modulo} da correggere.
+      - |
+        Timeout puntuale durante la ricerca fatture per data.
+        La query va in errore solo se si seleziona un intervallo superiore a 30 giorni.
+        Costringe gli operatori a fare ricerche frazionate.
+        Molto scomodo per l'operatività quotidiana, serve ottimizzazione.
+      - |
+        Mancata ricezione notifica approvazione ordine {numero_ordine}.
+        Il responsabile ha approvato, ma l'email non è arrivata all'amministrazione.
+        Senza notifica la fatturazione non parte.
+        Verificare code di posta in uscita su ambiente {ambiente}.
+      - |
+        Errore validazione codice fiscale per nuovo cliente {cliente}.
+        Il sistema lo segna come errato anche se è formalmente valido.
+        Impedisce il salvataggio della scheda cliente.
+        Necessario bypassare il controllo o correggere l'algoritmo di validazione.
+      - |
+        Duplicazione righe in visualizzazione estratto conto {cliente}.
+        Le fatture appaiono due volte nella lista a video.
+        Il saldo finale è corretto, è solo un errore visivo che confonde gli operatori.
+        Richiesta pulizia della view nel modulo {modulo}.
+      - |
+        Impossibile allegare PDF al record della fattura {numero_fattura}.
+        Il bottone 'Upload' non risponde o dà errore di permessi.
+        Il documento deve essere archiviato digitalmente entro fine mese.
+        Problema limitato alla funzione di upload, il resto funziona.
+      - |
+        Attività di background: archiviazione documenti storici cliente {cliente} per anno {anno_fiscale}.
+        Si tratta di spostare vecchi file (fatture, contratti) nell'archivio morto per liberare spazio.
+        Nessuna urgenza operativa: il task può girare nei momenti di inattività del sistema.
+        Operazione di manutenzione ordinaria del database.
+      - |
+        Nota di aggiornamento anagrafica per cliente {cliente} nel sistema {modulo}.
+        Inseriti dati nuovo referente {nome_utente} a puro titolo informativo per il database.
+        Nessuna azione di sincronizzazione richiesta al momento.
+        Semplice data entry per tenere ordinato lo storico contatti.
+      - |
+        Procedura di backup storico: export fatture anno {anno_fiscale} per archivio sicurezza.
+        Generazione file statico in formato {formato_file} da conservare server-side.
+        Operazione a bassa priorità da accodare ai job notturni o weekend.
+        Serve solo per compliance e non per attività correnti.
+      - |
+        Proposta di manutenzione ordinaria: pulizia account inattivi da lungo periodo.
+        Lista di {quantita} utenti che non accedono da mesi.
+        Attività di igiene del database da schedulare come task di routine.
+        Nessun impatto sugli utenti attivi o sul servizio di produzione.
+      - |
+        Richiesta estrazione dati statistici su utilizzo licenze {linea_prodotto}.
+        Il report serve esclusivamente per proiezioni di budget anno prossimo (uso interno).
+        Nessuna scadenza operativa immediata.
+        Elaborazione da fare offline quando le risorse lo permettono.
+      - |
+        Monitoraggio passivo dei log modulo gestione utenti per statistiche utilizzo.
+        Analisi a posteriori dei tracciati per identificare trend di lungo periodo.
+        Non ci sono errori attivi o malfunzionamenti.
+        Attività di studio per future ottimizzazioni, senza impatto attuale.
+      - |
+        Controllo qualità dati contabili storici per archivio.
+        Verifica di routine sulla coerenza dei vecchi movimenti di anni passati.
+        Non blocca nessuna attività corrente e non richiede correzioni urgenti.
+        Si può procedere gradualmente alla validazione dei record passati.
+      - |
+        Data entry: modifica scheda informativa cliente {cliente}.
+        Aggiornamento campi email {email_cliente} e referente {nome_utente}.
+        Modifica puramente formale per completezza anagrafica.
+        Attività amministrativa standard di basso livello, gestibile in background.
+
+tecnico:
+  titles:
+      - "URGENTE: Sistema {ambiente} down - impossibile accedere a fatturazione"
+      - "Crash critico modulo {modulo} durante elaborazione ordini cliente"
+      - "Servizio {modulo} non risponde - blocco operativo vendite"
+      - "Emergenza: perdita dati cliente {cliente} su ambiente {ambiente}"
+      - "Blocco inserimento ordini {numero_ordine} - errore {codice_errore}"
+      - "Sistema bloccato durante generazione preventivi per {cliente}"
+      - "Bug funzionale: sconto IVA non calcolato su estero"
+      - "Performance degradate: dashboard impiega 15s (utenti lamentano)"
+      - "Accesso negato parziale: cartella specifica inaccessibile"
+      - "Glitch intermittente: tabella ordini a volte vuota"
+      - "Warning disco: server {ambiente} al 85% (rischio saturazione)"
+      - "Coda email bloccata: 50 messaggi in attesa (ritardo comunicazioni)"
+      - "Instabilità DB: timeout random su update anagrafiche"
+      - "Disallineamento magazzino: giacenze web vs ERP errate"
+      - "Vulnerabilità security: patch richiesta entro 30gg"
+      - "Errore job notturno: 5 record scartati su 1000"
+      - "Formattazione rotta: PDF report illeggibile"
+      - "Query lenta: ricerca clienti senza indice (full scan)"
+      - "Info: tracciamento attività {modulo}"
+      - "Domanda: funzionamento teorico preventivi"
+      - "Wishlist: estetica interfaccia {modulo}"
+      - "Storico: dati {tipo_dato} passati"
+      - "Roadmap: supporto futuro {prodotto}"
+      - "Nota: monitoraggio passivo {ambiente}"
+      - "Doc: manuale operativo {modulo}"
+      - "Analisi: statistiche log {modulo}"
+      - "Segnalazione: glitch grafico {ambiente}"
+      - "Pianificazione: upgrade minore {versione_software}"
+      - "Info: codice {codice_errore} (falso positivo)"
+      - "Test: funzionalità sandbox {ambiente}"
+
+  bodies:
+      - |
+        Il sistema {ambiente} è completamente bloccato da questa mattina. Impossibile accedere
+        al modulo fatturazione e gestione ordini. Circa {quantita} utenti bloccati inclusi reparti
+        amministrativi e commerciali. Errore restituito: {codice_errore}. Tutte operazioni business ferme
+        includendo emissione fatture per clienti {cliente} e conferma ordini. Intervento urgentissimo richiesto.
+      - |
+        Crash critico del modulo {modulo} durante elaborazione ordini cliente. Il sistema si blocca
+        quando si tenta di confermare ordine {numero_ordine} per {cliente}. Errore {codice_errore}
+        impedisce completamento transazioni. Il reparto commerciale non può processare ordini per {importo}.
+        Necessario ripristino immediato servizio su ambiente {ambiente}.
+      - |
+        Il servizio {modulo} non risponde da {giorni_richiesta} ore causando down completo operativo totale.
+        Impossibile per utenti commerciali accedere per generare preventivi. Clienti {cliente} attendono
+        offerte con scadenza oggi. Nessun workaround disponibile, sistema mostra {codice_errore}.
+        Impatto critico su vendite e relazioni clienti. Assistenza urgente necessaria.
+      - |
+        Emergenza: rilevata perdita dati cliente {cliente} su ambiente {ambiente}. Informazioni inserite
+        ieri in {modulo} non più disponibili. Query ricerca restituiscono errore {codice_errore}.
+        Dati critici per fatturazione ordine {numero_ordine} e reportistica. Impossibile recuperare
+        anagrafiche e storico transazioni. Richiesto intervento immediato per ripristino.
+      - |
+        Blocco totale inserimento ordini nel sistema. Impossibile salvare ordine {numero_ordine} per cliente {cliente}.
+        Modulo {modulo} restituisce errore "{codice_errore}" e non completa operazione.
+        Processo commerciale fermo da {giorni_richiesta} ore. Cliente attende conferma per ordine da {importo}.
+        Assistenza tecnica immediata richiesta per sblocco.
+      - |
+        Sistema completamente bloccato durante generazione preventivi per cliente {cliente}.
+        Il modulo {modulo} va in crash con errore {codice_errore} quando si tenta calcolo per {linea_prodotto}.
+        Team commerciale impossibilitato a inviare offerte. Scadenza opportunità entro {tempo_massimo}.
+        Ripristino urgente necessario per non perdere vendita.
+      - |
+        Anomalia nel calcolo sconti: il modulo {modulo} applica l'IVA al 22% anche sull'esente.
+        Succede solo con clienti esteri.
+        Gli ordini vengono processati ma con importi errati che vanno corretti a mano.
+        Bug funzionale da risolvere per evitare lavoro manuale.
+      - |
+        Lentezza eccessiva nel caricamento della dashboard {pagina_applicativa}.
+        Impiega 15 secondi per aprirsi invece dei soliti 2.
+        Il sistema è utilizzabile ma la navigazione è frustrante per gli utenti.
+        Probabile query non ottimizzata su DB {ambiente}.
+      - |
+        L'utente {nome_utente} segnala errore 'Access Denied' su una specifica cartella.
+        I permessi sembrano corretti a sistema.
+        L'utente può lavorare su altre cartelle, ma quella specifica è inaccessibile.
+        Verificare ACL su file server.
+      - |
+        Glitch visuale nella tabella ordini: la colonna 'Totale' a volte appare vuota.
+        Facendo refresh della pagina i dati compaiono.
+        Problema intermittente che genera confusione nel reparto vendite.
+        Non blocca gli ordini ma genera chiamate di assistenza inutili.
+      - |
+        Log del server application pieno di warning 'Connection Reset'.
+        Il servizio non è mai andato down, ma i log crescono di 1GB al giorno.
+        Rischio saturazione disco se non si indaga la causa.
+        Situazione da monitorare e correggere prima che diventi critica.
+      - |
+        Il servizio di invio email automatiche si è inceppato per 2 ore.
+        Ora ha ripreso, ma c'è una coda di 50 email in attesa.
+        Monitorare lo smaltimento della coda per assicurarsi che non si blocchi di nuovo.
+        Verificare configurazione SMTP relay.
+      - |
+        Timeout sporadici durante l'update delle anagrafiche su {modulo}.
+        Succede circa 1 volta su 10 tentativi.
+        Riprova e funziona.
+        Indice di instabilità del database che va indagata, anche se non blocca il lavoro.
+      - |
+        Disallineamento giacenze magazzino tra ERP e e-commerce.
+        Alcuni articoli risultano disponibili online ma sono a zero in magazzino.
+        Rischio ordini non evadibili.
+        Forzare una sincronizzazione completa stanotte.
+      - |
+        Richiesta patch di sicurezza per libreria obsoleta in {modulo}.
+        Vulnerabilità media segnalata dal security scan.
+        Non c'è exploit attivo, ma la policy richiede aggiornamento entro 30 giorni.
+        Pianificare installazione patch in ambiente di test.
+      - |
+        Il job notturno di importazione dati ha saltato 5 record su 1000.
+        Errore di validazione sui campi data.
+        I restanti 995 record sono ok.
+        Analizzare i 5 scarti e capire perché il formato data era errato.
+      - |
+        Errore generazione PDF report vendite mensile.
+        Il report esce con formattazione sballata nelle ultime pagine.
+        I dati sono leggibili ma il documento è brutto da inviare al board.
+        Correggere template di stampa.
+      - |
+        Query di ricerca clienti lenta: manca indice sulla colonna 'Partita IVA'.
+        Ogni ricerca fa full table scan.
+        Creare indice per migliorare tempi di risposta.
+        Attività di tuning DB standard.
+      - |
+        Suggerimento per futura roadmap evolutiva del modulo {modulo}.
+        Sarebbe utile valutare una ristrutturazione dei menu per il prossimo major update.
+        Nessuna fretta: inserire in wishlist per discussione trimestrale.
+        Proposta puramente estetica/funzionale per il futuro.
+      - |
+        Domanda generica su logica funzionamento sconti in {linea_prodotto}.
+        Serve per aggiornare il wiki interno e formare i junior.
+        Il sistema funziona come atteso, si richiede solo conferma teorica della formula.
+        Da gestire a tempo perso come attività di knowledge sharing.
+      - |
+        Feedback su usabilità interfaccia {modulo}: i colori dei grafici sono poco leggibili.
+        Problema puramente cosmetico che non impatta le funzionalità.
+        Valutare restyling grafico quando si metterà mano al frontend.
+        Segnalazione di bassa priorità per backlog UX.
+      - |
+        Curiosità su dati storici cliente: ho notato record vecchi di 5 anni.
+        Non creano problemi, ma volevo capire la policy di retention.
+        Solo per mia informazione personale, nessuna azione correttiva richiesta.
+        Chiudere il ticket dopo breve risposta informativa.
+      - |
+        Pianificazione attività di shadowing per upgrade sistema {prodotto}.
+        Vorrei assistere alle operazioni della prossima settimana per imparare.
+        Nessun intervento attivo richiesto, solo presenza come osservatore.
+        Attività di formazione interna on-the-job.
+      - |
+        Nota di osservazione su ambiente {ambiente}: performance stabili.
+        Tracciamento periodico KPI di sistema per reportistica mensile.
+        Tutti i parametri sono nella norma.
+        Ticket aperto solo per loggare l'avvenuto controllo di routine.
+      - |
+        Richiesta PDF aggiornato del manuale utente modulo {modulo}.
+        La versione sul server è obsoleta (manca capitolo 5).
+        Non serve per attività correnti, ma per completezza archivio documentale.
+        Inviare file quando disponibile.
+      - |
+        Studio statistico sui log di accesso al modulo {modulo}.
+        Raccolta dati grezzi per tesi di ottimizzazione database.
+        Nessun errore da investigare, solo data mining su storico.
+        Processo da lanciare in background senza priorità.
+      - |
+        Segnalazione glitch grafico minore su {modulo} in risoluzione 4K.
+        Il footer si sovrappone leggermente ma i bottoni funzionano.
+        Difetto visivo marginale da correggere quando capiterà occasione.
+        Non impatta l'operatività degli utenti standard.
+      - |
+        Draft pianificazione manutenzione {versione_software} per l'anno prossimo.
+        Inizio raccolta requisiti preliminari per upgrade futuro.
+        Attività di studio fattibilità a lungo termine.
+        Nessuna scadenza imminente, solo fase di brainstorming tecnico.
+      - |
+        Info su messaggio di cortesia in processo ordini.
+        Il testo visualizzato è corretto ma potrebbe essere più gentile.
+        Valutare rewording per prossima release testi.
+        Modifica editoriale di bassa rilevanza tecnica.
+      - |
+        Sessione di test esplorativo su ambiente {ambiente} per nuovi assunti.
+        Utilizzo sandbox per prendere confidenza con le funzioni base.
+        Nessun output atteso, solo attività didattica.
+        Non richiede supervisione senior.
+
+commerciale:
+  titles:
+      - "URGENTE: Cliente {cliente} impossibilitato completare ordine su portale"
+      - "Preventivo bloccato - sistema {modulo} errore {codice_errore}"
+      - "Opportunità urgente {cliente} - richiesta offerta entro {tempo_massimo}"
+      - "Errore critico durante conferma ordine {numero_ordine} per {cliente}"
+      - "Carrello bloccato: totale non si aggiorna (cliente non chiude)"
+      - "Tasto invio disabilitato: preventivo bloccato in bozza"
+      - "Storico sparito: lista ordini vuota per cliente {cliente}"
+      - "Errore provvigioni: calcolo zero su vendite mese (da correggere)"
+      - "Plugin Outlook rotto: CRM non traccia email inviate"
+      - "Link rotto: impossibile scaricare scheda tecnica portale"
+      - "Anagrafica doppia: impossibile unificare record (ordini aperti)"
+      - "Generatore PDF lento: 5 minuti per un preventivo (imbarazzante)"
+      - "Listino errato: cliente vede prezzi pubblici invece di riservati"
+      - "Quota SMTP superata: invio newsletter bloccato a metà"
+      - "Import fallito: file Excel rifiutato per colonna mancante"
+      - "Ricerca rotta: prodotti non trovati con codice parziale"
+      - "Info: brochure standard {linea_prodotto}"
+      - "Materiale: invio generico {prodotto}"
+      - "Marketing: gadget evento futuro"
+      - "Lead: interesse generico {cliente}"
+      - "Archivio: datasheet storico {prodotto}"
+      - "Data entry: prospect (no urgenza)"
+      - "Trend: report vendite {linea_prodotto}"
+      - "Statistiche: export dati {modulo}"
+      - "Check: anagrafica campagna futura"
+      - "Setup: permessi utente prossimo mese"
+
+  bodies:
+      - |
+        URGENTE: Cliente {cliente} impossibilitato completare ordine su portale self-service.
+        Sistema restituisce errore {codice_errore} durante checkout. Ordine riguarda {quantita}
+        unità {prodotto} valore {importo}. Cliente conferma verbalmente ma necessita conferma
+        sistema entro {tempo_massimo}. Perdita vendita imminente se non risolto.
+        Verifica ambiente {ambiente} e transazioni database.
+      - |
+        Preventivo bloccato per cliente {cliente} impossibile salvare in sistema {modulo}.
+        Ogni tentativo genera timeout perdendo dati inseriti. Offerta deve essere inviata
+        entro {tempo_massimo} per chiusura opportunità da {importo}. Utente {nome_utente}
+        riprovato tre volte senza successo. Errore {codice_errore}. Problema tecnico urgente.
+      - |
+        Opportunità commerciale urgente cliente {cliente} richiede offerta {linea_prodotto}.
+        Budget {importo} disponibile, necessità prodotto {prodotto} per progetto {modulo}
+        con partenza {data_pagamento}. Offerta competitiva richiesta entro {tempo_massimo}
+        con dettaglio pricing, consegna, assistenza. Impossibile accedere listini aggiornati
+        in sistema. Contatto {email_utente}.
+      - |
+        Errore critico durante conferma ordine {numero_ordine} per cliente {cliente}.
+        Sistema genera "{codice_errore}" non completando transazione. Ordine include
+        {quantita} unità {prodotto} consegna {data_pagamento}. Cliente già effettuato
+        bonifico {importo} ma impossibile confermare senza completare inserimento {modulo}.
+        Blocco operativo critico.
+      - |
+        Anomalia nel carrello e-commerce per cliente {cliente}.
+        Aggiungendo 10 unità di {prodotto}, il totale non si aggiorna correttamente.
+        Il cliente non riesce a chiudere l'ordine in autonomia.
+        Necessario supporto per inserimento manuale dell'ordine entro oggi.
+      - |
+        Preventivo per {linea_prodotto} bloccato in stato 'Bozza'.
+        Non riesco a inviarlo per approvazione al manager.
+        Il tasto 'Invia' è disabilitato senza motivo apparente.
+        Ho dovuto mandare un PDF provvisorio al cliente, ma va sbloccato a sistema.
+      - |
+        Mancata visibilità dello storico ordini per il cliente {cliente}.
+        Devo preparare un'offerta basata sui consumi dell'anno scorso, ma la lista è vuota.
+        I dati ci sono (visti settimana scorsa).
+        Problema di visualizzazione che mi impedisce di fare un'offerta precisa.
+      - |
+        Errore nel calcolo provvigioni agente per il mese corrente.
+        Il report preliminare segna zero su alcune vendite {linea_prodotto}.
+        Ho bisogno dei dati corretti per la riunione commerciale di venerdì.
+        Verificare regole di calcolo provvigionale.
+      - |
+        Il CRM non sincronizza le email inviate al cliente {cliente}.
+        Perdo traccia della conversazione commerciale.
+        Outlook funziona, ma il plugin CRM dà errore di connessione intermittente.
+        Rende difficile la collaborazione con i colleghi sul conto.
+      - |
+        Impossibile scaricare la scheda tecnica aggiornata dal portale partner.
+        Link rotto o file mancante per il prodotto {prodotto}.
+        Il cliente aspetta le specifiche per validare il progetto.
+        Inviatemi il file corretto via email per favore.
+      - |
+        Doppia anagrafica rilevata per il cliente {cliente}.
+        Il sistema non mi lascia unificare i due record perché hanno ordini aperti.
+        Si rischia di spedire la merce all'indirizzo sbagliato (quello vecchio).
+        Richiesta fusione anagrafiche assistita.
+      - |
+        Lentezza nel generatore di preventivi PDF.
+        Ci vogliono 5 minuti per creare un documento di 2 pagine.
+        Molto imbarazzante quando si è al telefono con il cliente in attesa.
+        Ottimizzare il processo di renderizzazione.
+      - |
+        Il listino prezzi 'Distributori' non è visibile per il nuovo cliente {cliente}.
+        Vedo solo il listino 'Pubblico'.
+        Non posso applicare le condizioni commerciali concordate.
+        Verificare associazione listino-cliente.
+      - |
+        Errore 'Quote Exceeded' durante l'invio della newsletter promozionale.
+        La campagna è partita a metà: 500 email inviate, 500 bloccate.
+        Dobbiamo completare l'invio entro la fine della promo (domani).
+        Aumentare quota invio SMTP.
+      - |
+        Campi obbligatori mancanti nell'importazione lead da Excel.
+        Il sistema rifiuta il file perché manca la colonna 'Settore', che non ho.
+        Ho 200 lead da caricare a mano se non si sblocca l'import.
+        Rilassare vincoli di validazione per questo caricamento.
+      - |
+        Ricerca prodotti nel catalogo digitale non restituisce risultati per codici parziali.
+        Bisogna digitare il codice esatto, rallentando la ricerca durante le visite.
+        I clienti si spazientiscono.
+        Ripristinare ricerca 'wildcard' (es. *123*).
+      - |
+        Richiesta invio materiale informativo standard {linea_prodotto}.
+        Il cliente non ha progetti attivi, vuole solo tenere aggiornato il proprio archivio.
+        Inviare PDF generico quando disponibile.
+        Nessuna opportunità commerciale aperta.
+      - |
+        Preparazione kit gadget per fiera locale tra 6 mesi.
+        Richiesta disponibilità materiale promozionale (penne, blocchi) da magazzino.
+        Attività logistica di bassa priorità.
+        Organizzare spedizione con calma nelle prossime settimane.
+      - |
+        Curiosità del cliente {cliente} su roadmap futura {prodotto}.
+        Chiede se prevediamo evoluzioni tra 2-3 anni.
+        Informazione puramente speculativa, nessuna vendita in corso.
+        Rispondere con note generiche di visione aziendale.
+      - |
+        Inserimento manuale biglietti da visita raccolti in evento.
+        Attività di data entry puro per popolare il database contatti.
+        Nessuna scadenza: task riempitivo per stagisti o momenti scarichi.
+        L'importante è la correttezza dei dati, non la velocità.
+      - |
+        Archiviazione documentazione vecchia gara d'appalto persa.
+        Spostare i file del progetto {prodotto} nello storico inattivo.
+        Serve solo per liberare la vista corrente del CRM.
+        Operazione di pulizia ordinaria.
+      - |
+        Aggiornamento anagrafica: correzione refuso indirizzo cliente {cliente}.
+        Segnalazione errore battitura nel nome della via.
+        Non impatta le spedizioni (corriere ha indirizzo giusto).
+        Correggere a sistema per ordine formale del database.
+      - |
+        Registrazione esito sondaggio soddisfazione cliente {cliente}.
+        Il cliente si è detto contento del servizio {linea_prodotto}.
+        Inserire nota positiva nel fascicolo cliente.
+        Attività amministrativa di tracciamento feedback qualitativo.
+      - |
+        Richiesta scheda tecnica storica di un prodotto fuori produzione da 10 anni.
+        Cliente vuole solo confrontare i dati vecchi con i nuovi per curiosità.
+        Cercare negli archivi cartacei o backup quando c'è tempo.
+        Nessun valore commerciale attuale.
+      - |
+        Data cleaning: eliminazione duplicati anagrafiche prospect.
+        Rilevati alcuni contatti doppi inseriti per errore.
+        Unificare le schede mantenendo quella più recente.
+        Manutenzione igienica del CRM senza urgenza.
+      - |
+        Aggiornamento lista auguri natalizi per fine anno.
+        Verificare che i contatti del cliente {cliente} siano attivi.
+        Attività preparatoria con larghissimo anticipo.
+        Gestire come task di segreteria a bassa priorità.

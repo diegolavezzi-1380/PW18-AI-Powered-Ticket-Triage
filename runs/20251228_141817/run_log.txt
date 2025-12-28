@@ -1,0 +1,8 @@
+RUN_ID: 20251228_141817
+Executed notebooks:
+- 01_exploration_dataset_out.ipynb
+- 02_preprocessing_dataset_out.ipynb
+- 03_TFIDF_Logic_Regression_out.ipynb
+- 04_TFIDF_LinearSVM_out.ipynb
+- 05_Naive_Bayes_Exploration_out.ipynb
+- 06_Model_Result_Compare_out.ipynb
