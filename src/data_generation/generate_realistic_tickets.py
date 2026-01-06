@@ -1,8 +1,7 @@
 """
 Script di generazione di un dataset sintetico realistico per il progetto di Triage Automatico dei Ticket.
 
-Descrizione:
-Questo script genera un dataset sintetico di ticket di assistenza, simulando in modo ù
+Questo script genera un dataset sintetico di ticket di assistenza, simulando in modo 
 controllato e riproducibile il comportamento reale degli utenti nella creazione di richieste di supporto.
 
 Il dataset risultante viene utilizzato esclusivamente a fini sperimentali per l’addestramento e la valutazione 
@@ -51,6 +50,7 @@ fake = Faker("it_IT")
 
 from datetime import datetime
 from src.config.settings import (
+    TOTAL_TICKETS,
     CATEGORY_DISTRIBUTION,
     PRIORITY_TARGET,
     USE_TITLE,
@@ -219,9 +219,9 @@ def create_contaminated_category(text: str, category: str, contamination_probabi
     return text
 
 # ==================================================
-# Aggiunge contaminazione di keyword da altre categorie
+# Aggiunge contaminazione di keyword da altre priorità
 # ==================================================
-def create_contaminated_probability(text: str, category: str, contamination_probability_priority: float = 0.15) -> str:
+def create_contaminated_priority(text: str, category: str, contamination_probability_priority: float = 0.15) -> str:
     if random.random() < contamination_probability_priority and PRIORITY_CONTAMINATION_KEYWORDS:
         other_keywords = []
         for other_cat, keywords in PRIORITY_CONTAMINATION_KEYWORDS.items():
@@ -249,7 +249,7 @@ def apply_realistic_transformations(title: str, body: str, category: str, noise_
     body = add_language_mixing(body, mix_probability=noise_config.get('language_mixing_probability', 0.25))
     body = add_extra_info_noise(body, noise_probability=noise_config.get('extra_noise_probability', 0.25))
     body = create_contaminated_category(body, category, contamination_probability_category=noise_config.get('contamination_probability_category', 0.45))
-    body = create_contaminated_probability(body, category, contamination_probability_priority=noise_config.get('contamination_probability_priority', 0.20))
+    body = create_contaminated_priority(body, category, contamination_probability_priority=noise_config.get('contamination_probability_priority', 0.20))
 
     return title, body
 
@@ -331,7 +331,8 @@ def generate_dataset(num_tickets: int = 500, noise_config: dict = None) -> pd.Da
     priorities = ["alta", "media", "bassa"]
 
     for category, num_ticket in CATEGORY_DISTRIBUTION.items():
-        for _ in range(num_ticket):
+        ticket_count = int(TOTAL_TICKETS * num_ticket)
+        for _ in range(ticket_count):
 
             # 1) Calcola distribuzione corrente
             current_ratios = {
@@ -349,7 +350,7 @@ def generate_dataset(num_tickets: int = 500, noise_config: dict = None) -> pd.Da
             desired_priority = max(priority_deficit, key=priority_deficit.get)
 
             # 4) Decidi se vale la pena "spingere" verso desired_priority
-            #    Se non c'è un vero deficit, accetta qualsiasi priorità.
+            #    Se non c'è un vero deficit oltre il 3%, accetta qualsiasi priorità.
             must_match = priority_deficit[desired_priority] > 0.03      # soglia 3%
 
             # 5) Genera (e se serve rigenera) il ticket
@@ -384,7 +385,13 @@ def print_dataset_statistics(df: pd.DataFrame):
     print("="*60)
     
     print("\n=== DISTRIBUZIONE CATEGORIE ===")
-    print(df["category"].value_counts())
+    counts = df["category"].value_counts()
+    percent = df["category"].value_counts(normalize=True) * 100
+    summary = pd.DataFrame({
+        "count": counts,
+        "percent": percent.round(1)
+    })
+    print(summary)
     
     print("\n=== DISTRIBUZIONE PRIORITÀ ===")
     counts = df["priority"].value_counts()
@@ -405,7 +412,6 @@ def print_dataset_statistics(df: pd.DataFrame):
     print(f"  Min: {df['body_length'].min()}, Max: {df['body_length'].max()}")
     
     print("\n=== VARIABILITÀ REALISMO ===")
-    # Conta ticket con typo (hardcoded per demo)
     print(f"Total tickets: {len(df)}")
     
     print("\n" + "="*60)
@@ -439,6 +445,11 @@ def main():
     print("\n" + "="*60)
     print("GENERAZIONE DATASET TICKET REALISTICI")
     print("="*60)
+    print(f"\n" + f"Ticket toali: {TOTAL_TICKETS}")
+    print(f"\n" + "="*60)
+    print(f"\n" + f"Distribuzione categorie: {CATEGORY_DISTRIBUTION}")
+    print(f"Distribuzione priorità: {PRIORITY_TARGET}")
+    print(f"\n" + "="*60)
     print(f"\n" + f"Configurazione rumore: {NOISE_CONFIG}")
     
     df = generate_dataset(noise_config=NOISE_CONFIG)

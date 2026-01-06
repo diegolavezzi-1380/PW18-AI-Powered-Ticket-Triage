@@ -1,0 +1,78 @@
+Top words - Multinomial Naive Bayes
+
+Categoria
+=========
+
+Classe: Amministrazione
+  - fatture (-4.143)
+  - errore (-4.399)
+  - cliente (-4.401)
+  - utenti (-4.402)
+  - attività (-4.524)
+  - serve (-4.545)
+  - archivio (-4.601)
+  - modulo (-4.632)
+  - validazione (-4.637)
+  - account (-4.649)
+
+Classe: Commerciale
+  - cliente (-3.565)
+  - crm (-4.172)
+  - lead (-4.329)
+  - ordine (-4.382)
+  - linea (-4.429)
+  - futura (-4.517)
+  - file (-4.538)
+  - entro (-4.542)
+  - offerta (-4.548)
+  - commerciale (-4.561)
+
+Classe: Tecnico
+  - ordini (-3.997)
+  - dati (-4.424)
+  - clienti (-4.465)
+  - solo (-4.467)
+  - magazzino (-4.549)
+  - sconto (-4.593)
+  - attività (-4.625)
+  - glitch (-4.665)
+  - test (-4.671)
+  - modulo (-4.674)
+Priorità
+========
+
+Classe: alta
+  - ordine (-4.066)
+  - cliente (-4.122)
+  - urgente (-4.280)
+  - errore (-4.301)
+  - bloccato (-4.378)
+  - critico (-4.403)
+  - sistema (-4.498)
+  - ordini (-4.499)
+  - impossibile (-4.506)
+  - dati (-4.542)
+
+Classe: bassa
+  - attività (-4.141)
+  - nessuna (-4.316)
+  - cliente (-4.349)
+  - solo (-4.417)
+  - storico (-4.504)
+  - linea (-4.508)
+  - dati (-4.512)
+  - richiesta (-4.557)
+  - magazzino (-4.561)
+  - anno (-4.665)
+
+Classe: media
+  - cliente (-4.337)
+  - errore (-4.398)
+  - ordini (-4.404)
+  - bug (-4.562)
+  - timeout (-4.577)
+  - validazione (-4.625)
+  - record (-4.663)
+  - modulo (-4.681)
+  - attività (-4.687)
+  - fattura (-4.710)

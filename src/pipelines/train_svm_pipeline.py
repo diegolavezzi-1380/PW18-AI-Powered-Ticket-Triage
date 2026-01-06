@@ -18,7 +18,7 @@ Scelte progettuali:
 - suddivisione del dataset in training e test:
   - tramite una colonna 'split' già presente nel dataset (valori: train/test),
     se disponibile;
-  - in alternativa, tramite uno split stratificato 80/20 sulla variabile 'category'.
+  - in alternativa, tramite uno split stratificato 80/20 sulla combinazione delle variabili 'category' e 'priority'.
 
 Esecuzione (dalla root del progetto):
     python -m src.pipelines.train_svm_pipeline --input data/raw/tickets_realistic.csv
@@ -131,14 +131,6 @@ def build_text_column(df: pd.DataFrame, cfg: TrainConfig) -> pd.DataFrame:
 
 
 def make_train_test_split(df: pd.DataFrame, cfg: TrainConfig,use_existing_split: bool = False,):
-    """
-    Suddivide il dataset in training e test.
-
-    Restituisce:
-    X_train, X_test,
-    y_category_train, y_category_test,
-    y_priority_train, y_priority_test
-    """
     X = df[cfg.text_col]
     y_cat = df[cfg.category_col]
     y_pri = df[cfg.priority_col]
@@ -164,13 +156,15 @@ def make_train_test_split(df: pd.DataFrame, cfg: TrainConfig,use_existing_split:
             y_pri[test_mask],
         )
 
-    # Split automatico stratificato sulla categoria
+    # Split automatico stratificato sul abbinamento categoria + priorità
+    strat = df["category"].astype(str) + "||" + df["priority"].astype(str)
+
     X_train, X_test, y_cat_train, y_cat_test = train_test_split(
         X,
         y_cat,
         test_size=cfg.test_size,
         random_state=cfg.random_state,
-        stratify=y_cat,
+        stratify=strat,
     )
 
     y_pri_train = y_pri.loc[X_train.index]

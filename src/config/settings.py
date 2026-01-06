@@ -8,9 +8,9 @@ CATEGORIES = ["Amministrazione", "Tecnico", "Commerciale"]
 
 # DISTRIBUZIONE TARGET CATEGORIE (distibuzione realistica)
 CATEGORY_DISTRIBUTION = {
-    "Amministrazione": 144,     # 30%
-    "Tecnico": 216,             # 45%
-    "Commerciale": 120          # 25%
+    "Amministrazione": 0.30,     # 30%
+    "Tecnico": 0.45,             # 45%
+    "Commerciale": 0.25          # 25%
 }
 
 # DISTRIBUZIONE TARGET PRIORITÀ (distibuzione realistica)

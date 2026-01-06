@@ -1,3 +1,40 @@
+"""
+Dashboard applicativa per il progetto di Triage Automatico dei Ticket.
+
+Questo script implementa una dashboard minimale a scopo dimostrativo, finalizzata all’utilizzo applicativo dei modelli di classificazione addestrati nella fase di training.
+
+La dashboard non svolge attività di addestramento o valutazione dei modelli, ma si limita a caricare pipeline già addestrate e a metterle a disposizione
+dell’utente finale per effettuare predizioni su nuovi ticket.
+
+In particolare, lo script:
+- carica da disco due modelli di classificazione pre-addestrati:
+    1) modello di classificazione della categoria del ticket;
+    2) modello di classificazione della priorità del ticket;
+- consente la classificazione di un singolo ticket tramite inserimento manuale di titolo e corpo testuale;
+- consente la classificazione batch caricando un file CSV contenente le colonne 'title' e 'body';
+- restituisce, per ciascun ticket:
+    - categoria prevista;
+    - priorità suggerita;
+    - (per la classificazione singola) un insieme di parole più influenti sulla predizione della categoria, derivate dai pesi del modello lineare;
+- permette l’esportazione dei risultati di classificazione batch in formato CSV.
+
+Scelte progettuali:
+- utilizzo di Streamlit come framework di interfaccia grafica per ridurre al minimo il codice non core e focalizzarsi sulla pipeline ML;
+- caricamento dei modelli tramite joblib e caching delle risorse per migliorare le prestazioni;
+- interfaccia volutamente semplice e priva di logiche avanzate di validazione, in linea con lo scopo didattico e dimostrativo del project work;
+- spiegabilità locale basata sui coefficienti del modello lineare (TF-IDF + classificatore lineare), senza l’uso di librerie esterne di explainability.
+
+Esecuzione (dalla root del progetto):
+    streamlit run src/TK_Triage.py
+
+Prerequisiti:
+- modelli addestrati e salvati in:
+    - app/models/category_model.joblib
+    - app/models/priority_model.joblib
+- ambiente Python con dipendenze installate (vedi requirements.txt)
+"""
+
+
 import io
 import re
 import joblib
@@ -6,11 +43,16 @@ import pandas as pd
 import streamlit as st
 from pathlib import Path
 
-
+# ==================================================
+# Configurazione applicazione e percorsi modelli
+# ==================================================
 # Path base = cartella in cui si trova app.py (cioè src/)
 BASE_DIR = Path(__file__).resolve().parent
 MODELS_DIR = BASE_DIR / "models"
 
+# ==================================================
+# Preprocessing del testo (pulizia semplice)
+# ==================================================
 def clean_text(text: str) -> str:
     """Pulizia semplice e riproducibile del testo dei ticket."""
     if not isinstance(text, str):
@@ -74,9 +116,7 @@ def get_top_influential_words(text: str, pipeline, predicted_label: str, top_n: 
         # label numerica
         class_idx = int(predicted_label)
 
-    # 4) prendi i coefficienti per quella classe
-    # LogisticRegression: clf.coef_[class_idx, :]
-    # LinearSVC: idem
+    # 4) prende i coefficienti per quella classe
     coefs = clf.coef_[class_idx]  # shape (n_features,)
 
     # 5) contributo = tfidf_value * coef
@@ -86,7 +126,7 @@ def get_top_influential_words(text: str, pipeline, predicted_label: str, top_n: 
     # 6) feature names
     feature_names = np.array(vectorizer.get_feature_names_out())
 
-    # 7) tieni solo parole effettivamente presenti nel testo (tfidf > 0)
+    # 7) tiene solo parole effettivamente presenti nel testo (tfidf > 0)
     nonzero_indices = np.where(X.toarray().ravel() > 0)[0]
     if len(nonzero_indices) == 0:
         return []

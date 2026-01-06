@@ -1,0 +1,78 @@
+Top words - Logistic Regression
+
+Categoria
+=========
+
+Classe: Amministrazione
+  - fatture (2.068)
+  - serve (1.447)
+  - account (1.368)
+  - validazione (1.186)
+  - contabili (1.159)
+  - utenti (0.979)
+  - errore (0.969)
+  - anagrafica (0.949)
+  - statistiche (0.930)
+  - elaborazione (0.925)
+
+Classe: Commerciale
+  - cliente (2.020)
+  - crm (1.772)
+  - lead (1.659)
+  - offerta (1.461)
+  - futura (1.081)
+  - portale (1.080)
+  - commerciale (1.038)
+  - colonna (0.767)
+  - curiosità (0.733)
+  - linea (0.669)
+
+Classe: Tecnico
+  - ordini (1.769)
+  - indice (0.974)
+  - sconto (0.913)
+  - preventivi (0.900)
+  - pianificazione (0.894)
+  - reportistica (0.879)
+  - upgrade (0.857)
+  - patch (0.845)
+  - test (0.819)
+  - assistenza (0.804)
+Priorità
+========
+
+Classe: alta
+  - urgente (2.668)
+  - bloccato (2.381)
+  - critico (1.921)
+  - ordine (1.833)
+  - ordine urgente (1.681)
+  - errore critico (1.290)
+  - perdita (1.289)
+  - ambiente (1.152)
+  - errore (1.071)
+  - accedere (0.949)
+
+Classe: bassa
+  - storico (1.075)
+  - futura (0.922)
+  - attività (0.914)
+  - magazzino (0.825)
+  - nessuna (0.766)
+  - modifica (0.747)
+  - linea (0.718)
+  - indice (0.692)
+  - patch (0.684)
+  - servizio (0.670)
+
+Classe: media
+  - timeout (1.040)
+  - bug (0.996)
+  - validazione (0.917)
+  - errore (0.810)
+  - record (0.807)
+  - codice (0.762)
+  - problema (0.751)
+  - crm (0.751)
+  - test (0.696)
+  - db (0.688)
